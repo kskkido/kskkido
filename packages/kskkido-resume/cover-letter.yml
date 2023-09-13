@@ -1,0 +1,31 @@
+---
+### Macro's ###
+
+# use \latex for the special LaTeX symbol
+# use \amper for the special ampersand symbol
+# use \andIquote for special hanging punctuation at the beginning of a paragraph
+# use -- for a nut dash or n-dash
+# use --- for a mutton dash or m-dash
+
+### Configs ###
+mainfont: Alegreya Sans # fonts: Hoefler Text / OFL Sorts Mill Goudy / Sabon LT Std / Cardo / Linux Libertine O | you can use any good font, put your .otf in the fonts dir
+fontsize: 10pt # this template is based upon 10pt, ratios may not scale accordingly, options: 10pt or 11pt or 12pt
+lang: en # do not use capital letters: dutch / german
+geometry: a4paper, left=35mm, right=35mm, top=51mm, bottom=30mm # This document should NOT be printed double sided!
+geometrysecondarypagestop: 11mm # this will be minus! So 51mm - 21mm
+textcolor: "1e2323" # use hexcolor, 000000 for black
+linkcolor: "3E6E7E" # use hexcolor, FF0000 for red
+pagecolor: "ffffff" # use hexcolor, FFFFFF for white
+template: ./cv.tex
+links-as-notes: true
+
+### Personal details ###
+firstname: Keisuke
+lastname: Kido
+email: kskkido@gmail.com
+title: Software Developer
+birthdate: 1994/01/22
+urls:
+- https://github.com/kskkido
+- https://linkedin.com/in/keisuke-kido-037888b5/
+

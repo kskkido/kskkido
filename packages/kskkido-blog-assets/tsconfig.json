@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "declaration": true,
+    "sourceMap": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "composite": true,
+    "lib": ["dom", "dom.iterable", "esnext", "node"],
+    "rootDir": ".",
+    "baseUrl": ".",
+    "outDir": "./.build"
+  },
+  "include": ["src/**/*.ts", "src/**/*.js", "test/**/*.ts", "test/**/*.js"]
+}

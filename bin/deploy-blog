@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+function main() {
+  SCRIPT_DIR=$(cd "$(dirname $0)"; pwd)
+  PROJECT_DIR=$(dirname $SCRIPT_DIR)
+  cd ${PROJECT_DIR}
+  STAGE=${1:?"Stage required"}
+  ROOT_FILE_PATH=$(pwd)
+  INFRA_CONFIG_FILE_PATH="configs/${STAGE}/infra.yml"
+  export ROOT_FILE_PATH
+  export INFRA_CONFIG_FILE_PATH
+  cd packages/kskkido-infra
+  npx cdk deploy --all --app "npx ts-node bin/kskkidoBlogApplication.ts"
+}
+
+main $*

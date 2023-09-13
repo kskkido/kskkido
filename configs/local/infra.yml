@@ -1,0 +1,14 @@
+stage: local
+awsAccount: "350794894992"
+awsRegion: 'ap-northeast-1'
+serviceName: "kskkido"
+deploymentStackName: "kskkido-deployment-local"
+applicationStackName: "kskkido-application-local"
+deployRoleName: "kskkido-deploy-role-local"
+deployUserName: "personal"
+deployCiUserName: "ci"
+blogServiceName: "kskkido-blog"
+blogS3BucketName: "kskkido-blog-local"
+blogSourceFilePath: "packages/kskkido-blog/.build"
+blogTargetFilePath: "/"
+blogMetadataFileName: "_metadata.json"

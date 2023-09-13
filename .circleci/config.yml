@@ -1,0 +1,217 @@
+version: 2.1
+
+orbs:
+  nix: eld/nix@1.1.1
+  aws-cli: circleci/aws-cli@3.1.1
+
+references:
+  default_branch: &default_branch main
+
+executors:
+ app:
+    docker:
+      - image: kskkido/eriko-ikeda-portfolio:latest
+    working_directory: ~/eriko-ikeda-portfolio
+  static:
+    docker:
+      - image: kskkido/eriko-ikeda-portfolio-static:latest
+    working_directory: ~/eriko-ikeda-portfolio
+  base:
+    docker:
+      - image: cimg/base:2020.01
+    working_directory: ~/eriko-ikeda-portfolio
+
+commands:
+  install_dependencies:
+    steps:
+      - restore_dependencies
+      - run: npm i
+  restore_dependencies:
+    steps:
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "flake.lock" }}
+            - v1-dependencies
+  save_dependencies:
+    steps:
+      - save_cache:
+          key: v1-dependencies-{{ checksum "flake.lock" }}
+          paths:
+            - node_modules/
+  bootstrap:
+    steps:
+      - nix/install
+      - aws-cli/install
+      - run: |
+          if [ -x "$(command -v yq)" ]; then
+            echo "yq already installed"
+          else
+            BINARY="yq_$(uname -s)_amd64"
+            # to lower case
+            BINARY=${BINARY,,}
+            curl -sL "https://github.com/mikefarah/yq/releases/latest/download/${BINARY}.tar.gz" | tar xz
+            mv ${BINARY} /usr/bin/yq
+            yq --version
+          fi
+      - run: |
+          echo 'Setting AWS profile'
+          mkdir -p ~/.aws
+          echo '[default]' >> ~/.aws/credentials
+          echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >> ~/.aws/credentials
+          echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
+          cat .circleci/.aws/config >> ~/.aws/config
+      - aws-cli/setup
+
+jobs:
+  start:
+    executor: base
+    steps:
+      - run: echo 'starting workflow'
+  done:
+    executor: base
+    steps:
+      - run: echo 'finished workflow'
+  blog_build:
+    executor: app
+    steps:
+      - checkout
+      - bootstrap
+      - attach_workspace:
+          at: .
+      - install_dependencies
+      - run:
+          command: |
+            nix build .#kskkido-blog
+      - persist_to_workspace:
+          root: .
+          paths:
+            - packages/kskkido-blog/.build
+  blog_deploy:
+    executor: app
+    parameters:
+      stage:
+        type: enum
+        enum: ['development', 'production']
+      region:
+        type: string
+    steps:
+      - checkout
+      - bootstrap
+      - install_dependencies
+      - attach_workspace:
+          at: .
+      - run:
+          command: |
+            npm run cdk -- 
+          no_output_timeout: 30m
+  app-dependencies:
+    executor: app
+    steps:
+      - checkout
+      - app-install-dependencies
+      - app-save-dependencies
+  app-lint:
+    executor: app
+    steps:
+      - checkout
+      - app-install-dependencies
+      - app-lint
+  app-unit_test:
+    executor: app
+    steps:
+      - checkout
+      - app-install-dependencies
+      - app-unit_test
+  static-build:
+    executor: static
+    steps:
+      - checkout
+      - static-install-dependencies
+      - static-build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - static/public
+  static-dependencies:
+    executor: static
+    steps:
+      - checkout
+      - static-install-dependencies
+      - static-save-dependencies
+  publish:
+    executor: base
+    parameters:
+      stage:
+        type: enum
+        enum: ['development', 'production']
+    steps:
+      - checkout
+      - publish:
+          stage: << parameters.stage >>
+workflows:
+  commit:
+    jobs:
+      - start:
+          filters:
+            branches:
+              ignore:
+                - *default_branch
+      - app-dependencies:
+          requires:
+            - start
+      - app-lint:
+          requires:
+            - start
+      - app-unit_test:
+          requires:
+            - start
+      - app-build:
+          requires:
+            - start
+      - done:
+          requires:
+            - app-dependencies
+            - app-lint
+            - app-unit_test
+            - app-build
+  deploy_production:
+    jobs:
+      - start:
+          filters:
+            branches:
+              only:
+                - *default_branch
+      - static-dependencies:
+          requires:
+            - start
+      - static-build:
+          requires:
+            - start
+      - app-lint:
+          requires:
+            - start
+      - app-unit_test:
+          requires:
+            - start
+      - app-dependencies:
+          requires:
+            - start
+      - app-build:
+          requires:
+            - static-build
+      - app-deploy:
+          stage: production
+          region: ap-northeast-1
+          context:
+            - aws-credentials
+            - eriko-ikeda-portfolio-contentful-production
+          requires:
+            - static-build
+            - app-dependencies
+            - app-lint
+            - app-unit_test
+            - app-build
+      - publish:
+          stage: production
+          requires:
+            - app-deploy

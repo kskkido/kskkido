@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+function main() {
+  BASE_DIRECTORY=$(dirname "$0")
+  ROOT_DIRECTORY="$BASE_DIRECTORY/.."
+  cd ${ROOT_DIRECTORY}
+  source configs/local/.env
+  BLOG_FILES=$(find packages/kskkido-blog/.build -name '*.html')
+  STYLE_FILES=$(find packages/kskkido-blog-assets/src -name "*.css")
+  SCRIPT_FILES=$(find packages/kskkido-blog-assets/src -name "*.ts")
+  for FILE in $BLOG_FILES $STYLE_FILES $SCRIPT_FILES; do
+    FILES="$FILES"$'\n'"$FILE"
+  done
+  echo "$FILES" | entr npm --prefix packages/kskkido-blog-assets run build
+}
+
+main $*
+

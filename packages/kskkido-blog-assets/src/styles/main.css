@@ -1,0 +1,107 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import '@pagefind/default-ui/css/ui';
+
+html {
+  font-family: 'helvetica neue', sans-serif;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+body {
+  @apply text-base text-gray-600 bg-gray-50;
+}
+
+.text-link {
+  @apply hover:underline hover:text-gray-600;
+  &.active {
+    @apply underline text-gray-600;
+  }
+}
+
+.site-title {
+  font-family: 'header', Georgia, 'Times New Roman', serif;
+}
+
+.markdown {
+  @apply text-base pb-32;
+
+  section {
+    @apply mb-4;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-gray-700;
+
+    position: relative;
+
+    & > .link {
+      @apply text-gray-500 ml-2 text-lg;
+
+      position: absolute;
+      top: 50%;
+      cursor: pointer;
+      opacity: 0;
+      transform: translate(-8px, -50%);
+      transition:
+        opacity 0.2s ease 0s,
+        transform 0.2s ease 0s;
+    }
+    &:hover > .link {
+      opacity: 1;
+      transform: translate(0, -50%);
+    }
+  }
+  h1 {
+    @apply font-medium text-3xl mb-6;
+  }
+  h2 {
+    @apply font-medium text-2xl mb-5;
+  }
+  h3 {
+    @apply font-medium text-xl mb-4;
+  }
+  h4 {
+    @apply font-medium text-lg mb-3;
+  }
+  h5 {
+    @apply font-medium text-base mb-2;
+  }
+  h6 {
+    @apply font-medium text-sm mb-1;
+  }
+
+  a {
+    @apply underline text-gray-800;
+  }
+
+  p {
+    @apply pb-4;
+    line-height: calc(1em + 0.75rem);
+  }
+
+  pre.sourceCode {
+    font: Inconsolata, 'Lucida Console', Terminal, 'Courier New', Courier;
+    padding-left: 20px;
+    @apply text-sm border-gray-100 border-l-2 mt-1 mb-4;
+  }
+}
+
+.table-of-contents {
+  .active {
+    @apply text-gray-600;
+    a {
+      @apply underline;
+    }
+  }
+
+  .inactive {
+    @apply text-gray-400;
+  }
+}

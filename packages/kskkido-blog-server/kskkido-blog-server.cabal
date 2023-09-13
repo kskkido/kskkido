@@ -1,0 +1,175 @@
+cabal-version:      3.0
+name:               kskkido-blog-server
+version:            0.1.0.0
+license:            MIT
+license-file:       LICENSE
+author:             Keisuke Kido
+maintainer:         kekido@moneytree.jp
+build-type:         Simple
+extra-doc-files:    CHANGELOG.md
+packages:           . ../kskkido-blog
+
+common warnings
+    ghc-options: -Wall
+
+library
+    import: warnings
+    exposed-modules:
+      Kskkido.BlogServer
+      Kskkido.BlogServer.Api
+      Kskkido.BlogServer.Type
+    hs-source-dirs: src
+    default-language: Haskell2010
+    default-extensions:
+      BlockArguments
+      DataKinds
+      DeriveAnyClass
+      DeriveGeneric
+      DuplicateRecordFields
+      FlexibleContexts
+      LambdaCase
+      MultiParamTypeClasses
+      NoImplicitPrelude
+      NoFieldSelectors
+      OverloadedLabels
+      OverloadedStrings
+      OverloadedRecordDot
+      StrictData
+      ExtendedDefaultRules
+      ScopedTypeVariables
+      QuasiQuotes
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      TupleSections
+    ghc-options: -Wall -Wcompat -Widentities -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+    build-depends:
+        aeson
+      , aeson-pretty
+      , aeson-qq
+      , async
+      , base
+      , bytestring
+      , containers
+      , data-has
+      , directory
+      , exceptions
+      , extra
+      , filepath
+      , hashable
+      , hslogger
+      , http-media
+      , ini
+      , kskkido-blog
+      , lens
+      , lucid
+      , lucid-svg
+      , mime-types
+      , monad-time
+      , mtl
+      , network
+      , optparse-applicative
+      , pandoc
+      , process
+      , retry
+      , rio
+      , serialise
+      , servant
+      , servant-server
+      , split
+      , stm
+      , text
+      , time
+      , transformers
+      , typed-process
+      , unordered-containers
+      , utf8-string
+      , validation
+      , wai
+      , wai-app-static
+      , yaml
+
+executable kskkido-blog-server
+    import:           warnings
+    main-is:          Main.hs
+    hs-source-dirs:   app
+    default-language: Haskell2010
+    default-extensions:
+      BlockArguments
+      DataKinds
+      DeriveAnyClass
+      DeriveGeneric
+      DuplicateRecordFields
+      FlexibleContexts
+      LambdaCase
+      MultiParamTypeClasses
+      NoImplicitPrelude
+      NoFieldSelectors
+      OverloadedLabels
+      OverloadedStrings
+      OverloadedRecordDot
+      StrictData
+      ExtendedDefaultRules
+      ScopedTypeVariables
+      QuasiQuotes
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      TupleSections
+    ghc-options: -Wall -Wcompat -Widentities -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+    build-depends:
+        aeson
+      , aeson-pretty
+      , aeson-qq
+      , async
+      , base
+      , bytestring
+      , containers
+      , data-has
+      , directory
+      , exceptions
+      , extra
+      , filepath
+      , hashable
+      , hslogger
+      , http-media
+      , ini
+      , kskkido-blog
+      , kskkido-blog-server
+      , lens
+      , lucid
+      , lucid-svg
+      , mime-types
+      , monad-time
+      , mtl
+      , network
+      , optparse-applicative
+      , pandoc
+      , process
+      , retry
+      , rio
+      , serialise
+      , servant
+      , servant-server
+      , split
+      , stm
+      , text
+      , time
+      , transformers
+      , typed-process
+      , unordered-containers
+      , utf8-string
+      , validation
+      , wai
+      , warp
+      , yaml
+
+test-suite kskkido-blog-server-test
+    import:           warnings
+    default-language: Haskell2010
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          Main.hs
+    build-depends:
+        base ^>=4.16.4.0,
+        kskkido-blog-server

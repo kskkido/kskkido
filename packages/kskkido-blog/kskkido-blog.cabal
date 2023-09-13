@@ -1,0 +1,168 @@
+cabal-version:      3.0
+name:               kskkido-blog
+version:            0.1.0.0
+license:            MIT
+license-file:       LICENSE
+author:             Keisuke Kido
+maintainer:         kekido@moneytree.jp
+build-type:         Simple
+extra-doc-files:    CHANGELOG.md
+
+common warnings
+    ghc-options: -Wall
+
+library
+    import: warnings
+    exposed-modules:
+      Kskkido.Blog.Generator
+      Kskkido.Blog.Generator.Type
+      Kskkido.Blog.Interpreter.Generator
+      Kskkido.Blog.Interpreter.Generator.Type
+      Kskkido.Blog.Core
+      Kskkido.Blog.Core.Type
+    other-modules:
+      Control.Monad.Except.Extension
+      Kskkido.Blog.Interpreter.View
+      Kskkido.Blog.Interpreter.View.Type
+      Kskkido.Blog.Templates.Components.PageSearch
+      Kskkido.Blog.Templates.Components.PostPreview
+      Kskkido.Blog.Templates.Components.TagPreview
+      Kskkido.Blog.Templates.Components.TableOfContents
+      Kskkido.Blog.Templates.Layouts.Root
+      Kskkido.Blog.Templates.Layouts.Body
+      Kskkido.Blog.Templates.Layouts.Head
+      Kskkido.Blog.Templates.Layouts.Foot
+      Kskkido.Blog.Templates.Pages.About
+      Kskkido.Blog.Templates.Pages.Home
+      Kskkido.Blog.Templates.Pages.Post
+      Kskkido.Blog.Templates.Pages.Posts
+      Kskkido.Blog.Templates.Pages.Tag
+      Kskkido.Blog.Templates.Pages.Tags
+      Kskkido.Blog.Templates.Views.About
+      Kskkido.Blog.Templates.Views.Home
+      Kskkido.Blog.Templates.Views.Post
+      Kskkido.Blog.Templates.Views.Posts
+      Kskkido.Blog.Templates.Views.Tag
+      Kskkido.Blog.Templates.Views.Tags
+      Data.List.Extension
+      Data.Maybe.Extension
+      Data.String.Extension
+      Data.Time.Calendar.Extension
+      Lucid.Extension
+      Lucid.Extension.Alpine
+      Lucid.Extension.Htmx
+      System.Directory.Extension
+    hs-source-dirs: src
+    default-language: Haskell2010
+    default-extensions:
+      BlockArguments
+      DataKinds
+      DeriveGeneric
+      DerivingStrategies
+      DuplicateRecordFields
+      FlexibleContexts
+      FlexibleInstances
+      GeneralizedNewtypeDeriving
+      InstanceSigs
+      LambdaCase
+      MultiParamTypeClasses
+      NoImplicitPrelude
+      NoFieldSelectors
+      OverloadedLabels
+      OverloadedStrings
+      OverloadedRecordDot
+      RankNTypes
+      RecordWildCards
+      StrictData
+      ExtendedDefaultRules
+      ScopedTypeVariables
+      QuasiQuotes
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      TupleSections
+    ghc-options: -Wall -Wcompat -Widentities -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+    build-depends:
+        aeson
+      , aeson-pretty
+      , aeson-qq
+      , async
+      , base
+      , bytestring
+      , case-insensitive
+      , containers
+      , data-has
+      , directory
+      , exceptions
+      , extra
+      , filepath
+      , hashable
+      , hslogger
+      , ini
+      , lens
+      , lucid
+      , lucid-svg
+      , mime-types
+      , monad-time
+      , mtl
+      , network
+      , optparse-applicative
+      , pandoc
+      , pandoc-types
+      , process
+      , retry
+      , rio
+      , serialise
+      , split
+      , stm
+      , text
+      , time
+      , transformers
+      , typed-process
+      , unordered-containers
+      , utf8-string
+      , validation
+      , yaml
+
+executable kskkido-blog
+    import:           warnings
+    main-is:          Main.hs
+    build-depends:
+        aeson
+      , base
+      , bytestring
+      , directory
+      , extra
+      , filepath
+      , kskkido-blog
+      , mime-types
+      , pandoc
+      , rio
+      , text
+      , transformers
+      , utf8-string
+    hs-source-dirs:   app
+    default-language: Haskell2010
+    default-extensions:
+      BlockArguments
+      DataKinds
+      DeriveAnyClass
+      DeriveGeneric
+      DuplicateRecordFields
+      FlexibleContexts
+      LambdaCase
+      MultiParamTypeClasses
+      NoImplicitPrelude
+      NoFieldSelectors
+      OverloadedLabels
+      OverloadedStrings
+      OverloadedRecordDot
+      StrictData
+      ExtendedDefaultRules
+      ScopedTypeVariables
+      QuasiQuotes
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      TupleSections
+

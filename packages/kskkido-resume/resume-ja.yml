@@ -1,0 +1,104 @@
+---
+### Macro's ###
+
+# use \latex for the special LaTeX symbol
+# use \amper for the special ampersand symbol
+# use \andIquote for special hanging punctuation at the beginning of a paragraph
+# use -- for a nut dash or n-dash
+# use --- for a mutton dash or m-dash
+
+### Configs ###
+mainfont: Alegreya Sans # fonts: Hoefler Text / OFL Sorts Mill Goudy / Sabon LT Std / Cardo / Linux Libertine O | you can use any good font, put your .otf in the fonts dir
+fontsize: 10pt # this template is based upon 10pt, ratios may not scale accordingly, options: 10pt or 11pt or 12pt
+lang: ja # do not use capital letters: dutch / german
+geometry: a4paper, left=35mm, right=35mm, top=51mm, bottom=30mm # This document should NOT be printed double sided!
+geometrysecondarypagestop: 11mm # this will be minus! So 51mm - 21mm
+textcolor: "1e2323" # use hexcolor, 000000 for black
+linkcolor: "3E6E7E" # use hexcolor, FF0000 for red
+pagecolor: "ffffff" # use hexcolor, FFFFFF for white
+template: ./cv.tex
+links-as-notes: true
+
+### Personal details ###
+firstname: 慶祐
+lastname: 貴堂
+email: kskkido@gmail.com
+title: ソフトウェアエンジニア
+birthdate: 1994/01/22
+urls:
+- https://github.com/kskkido
+- https://linkedin.com/in/keisuke-kido-037888b5/
+
+skillstitle: 関連技術・専門分野
+skills:
+- フルスタックウェブアプリ開発
+- サーバーレスアプリ開発
+- "プログラミング言語: Typescript, Haskell, Purescript, Elixir, Ruby, Python, Lua"
+- "フレームワーク: NextJS, Pheonix, Ruby On Rails"
+- "インフラ: AWS, GCP"
+- "ツール: Docker, Nix"
+- "CI/CD: CircleCI, Github Actions"
+
+languagestitle: 言語
+languages:
+- language: 英語
+  proficiency: ネイティブ
+- language: 日本語
+  proficiency: ネイティブ
+
+experiencetitle: 職務履歴 # or Previous Experience
+experience:
+- beginyears: 2020年1月
+  employer: Moneytree
+  profession: フルスタックウェブエンジニア
+  city: Tokyo, Japan
+  details:
+    - ウェブアプリ開発
+    - 社内向けツールの開発
+    - ウェブ・APIスクレイピングシステムの開発
+    - ページパフォーマンスモニタリングツールの開発
+- beginyears: 2018年1月
+  endyears: 2020年1月
+  employer: Coiney / Stores
+  profession: フロントエンドウェブエンジ二ア
+  city: Tokyo, Japan
+  details:
+    - Typescript, React, NodeJSを用いたウェブアプリ開発
+
+# Work not directly related to the job you are applying for
+otherexperiencetitle: その他履歴
+otherexperience:
+- beginyears: 2016年9月
+  endyears: 2017年2月
+  employer: Bank Robber Music
+  profession: Music Licensing / Publishing Intern
+  city: New York NY, USA
+  details:
+- beginyears: 2016年9月
+  endyears: 2016年12月
+  employer: Round Hill Music
+  profession: Synch/Creative Licensing Intern
+  city: New York NY, USA
+  details:
+- beginyears: 2016年6月
+  endyears: 2016年8月
+  employer: Columbia Records
+  profession: Big Red 2016 - Promotions Intern
+  city: New York NY, USA
+  details:
+
+educationtitle: 学歴
+education:
+- beginyears: 2016年11月
+  endyears: 2017年3月
+  subject: Computer Software Engineering
+  institute: Fullstack Academy
+  city: New York NY, USA
+  degree: 
+- beginyears: 2012年
+  endyears: 2016年
+  subject: Music Business & Management
+  institute: University of Bielefeld
+  city: Boston MA, USA
+  degree: Bachelor of Arts
+...

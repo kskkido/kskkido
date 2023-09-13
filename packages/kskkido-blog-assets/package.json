@@ -1,0 +1,40 @@
+{
+  "name": "kskkido-blog-assets",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:styles; npm run build:scripts; npm run build:pagefind",
+    "build:styles": "npx postcss ./src/styles/main.css -d ./public/styles",
+    "build:scripts": "node ./esbuild.mjs",
+    "build:pagefind": "pagefind --source ../kskkido-blog/.build",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@pagefind/default-ui": "^0.12.0",
+    "fp-ts": "2.13.1",
+    "io-ts": "2.2.20",
+    "io-ts-types": "0.5.19",
+    "monocle-ts": "2.3.13",
+    "newtype-ts": "0.3.5",
+    "pagefind": "^0.12.0",
+    "rxjs": "7.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.5.8",
+    "autoprefixer": "^10.4.14",
+    "esbuild": "0.16.17",
+    "fast-glob": "3.2.12",
+    "postcss": "8.4.21",
+    "postcss-cli": "10.1.0",
+    "postcss-custom-media": "9.1.2",
+    "postcss-import": "15.1.0",
+    "postcss-nested": "6.0.1",
+    "tailwindcss": "3.3.3",
+    "typescript": "5.1.6"
+  }
+}

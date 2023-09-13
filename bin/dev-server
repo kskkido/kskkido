@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+function main() {
+  BASE_DIRECTORY=$(dirname "$0")
+  ROOT_DIRECTORY="$BASE_DIRECTORY/.."
+  cd ${ROOT_DIRECTORY}
+  source configs/local/.env
+  SERVER_FILES=$(find packages/kskkido-blog-server/{src,app} -name '*.hs')
+  ASSETS_FILES=$(find packages/kskkido-blog-assets/.build -name "*.css")
+  for FILE in $SERVER_FILES $ASSETS_FILES; do
+    FILES="$FILES"$'\n'"$FILE"
+  done
+  echo "$FILES" | entr -r cabal new-run packages/kskkido-blog-server
+}
+
+main $*

@@ -1,0 +1,107 @@
+---
+### Macro's ###
+
+# use \latex for the special LaTeX symbol
+# use \amper for the special ampersand symbol
+# use \andIquote for special hanging punctuation at the beginning of a paragraph
+# use -- for a nut dash or n-dash
+# use --- for a mutton dash or m-dash
+
+### Configs ###
+mainfont: Alegreya Sans # fonts: Hoefler Text / OFL Sorts Mill Goudy / Sabon LT Std / Cardo / Linux Libertine O | you can use any good font, put your .otf in the fonts dir
+fontsize: 10pt # this template is based upon 10pt, ratios may not scale accordingly, options: 10pt or 11pt or 12pt
+lang: en # do not use capital letters: dutch / german
+geometry: a4paper, left=35mm, right=35mm, top=51mm, bottom=30mm # This document should NOT be printed double sided!
+geometrysecondarypagestop: 11mm # this will be minus! So 51mm - 21mm
+textcolor: "1e2323" # use hexcolor, 000000 for black
+linkcolor: "3E6E7E" # use hexcolor, FF0000 for red
+pagecolor: "ffffff" # use hexcolor, FFFFFF for white
+template: ./cv.tex
+links-as-notes: true
+
+### Personal details ###
+firstname: Keisuke
+lastname: Kido
+email: kskkido@gmail.com
+title: Software Developer
+phone: 090-2258-2345
+birthdate: 1994/01/22
+urls:
+- https://github.com/kskkido
+- https://linkedin.com/in/keisuke-kido-037888b5/
+
+skillstitle: Skills & areas of interest
+skills:
+- Developing fullstack web applications
+- Developing serverles applications
+- Functional programming
+- "Languages: Typescript, Javascript, Haskell, Purescript, Elixir, Ruby, Python"
+- "Frameworks: Next.js, Pheonix, Ruby On Rails"
+- "Infrastructure: AWS, GCP"
+- "Tools: Docker, Nix"
+- "CI/CD: CircleCI, Github Actions"
+
+languagestitle: Languages
+languages:
+- language: English
+  proficiency: native
+- language: Japanese
+  proficiency: native
+
+experiencetitle: Related Experiences # or Previous Experience
+experience:
+- beginyears: January 2020
+  employer: Moneytree
+  profession: Fullstack Software Developer
+  city: Tokyo, Japan
+  details:
+    - Developed various web applications for internal and external uses.
+    - Developed tools for automating customer support workflows.
+    - Developed web scraping and API aggregation systems.
+    - Developed automated system for monitoring page performances.
+- beginyears: January 2018
+  endyears: January 2020
+  employer: Coiney / Stores
+  profession: Frontend Developer
+  city: Tokyo, Japan
+  details:
+    - Developed web applications with Typescript, React, and Node.js.
+    - Involved in full software project lifecycle, from architectural design to successful deployment and maintenance.
+
+# Work not directly related to the job you are applying for
+otherexperiencetitle: Other Experiences
+otherexperience:
+- beginyears: September 2016
+  endyears: February 2017
+  employer: Bank Robber Music
+  profession: Music Licensing / Publishing Intern
+  city: New York NY, USA
+  details:
+- beginyears: September 2016
+  endyears: December 2016
+  employer: Round Hill Music
+  profession: Synch/Creative Licensing Intern
+  city: New York NY, USA
+  details:
+- beginyears: June 2016
+  endyears: August 2016
+  employer: Columbia Records
+  profession: Big Red 2016 - Promotions Intern
+  city: New York NY, USA
+  details:
+
+educationtitle: Education
+education:
+- beginyears: February 2017
+  endyears: May 2017
+  subject: Computer Software Engineering
+  institute: Fullstack Academy
+  city: New York NY, USA
+  degree: 
+- beginyears: 2012
+  endyears: 2016
+  subject: Music Business & Management
+  institute: University of Bielefeld
+  city: Boston MA, USA
+  degree: Bachelor of Arts
+...

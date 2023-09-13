@@ -1,0 +1,9 @@
+resume:
+  url: http://something
+socials:
+- variant: personal
+  url: kskkido.dev@gmail.com
+- variant: linkedin
+  url: https://linkedin.com/in/keisuke-kido-037888b5/
+- variant: github
+  url: https://github.com/kskkido

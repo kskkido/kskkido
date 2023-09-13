@@ -1,0 +1,11 @@
+stage: development
+serviceName: "kskkido"
+deploymentStackName: "kskkido-deployment-development"
+applicationStackName: "kskkido-application-development"
+deployRoleName: "kskkido-deploy-role-development"
+deployUserName: "personal"
+deployCiUserName: "ci"
+blogS3BucketName: "kskkido-blog-development"
+blogSourceFilePath: "packages/kskkido-blog/.build"
+blogTargetFilePath: "/"
+blogMetadataFileName: "_metadata.json"
